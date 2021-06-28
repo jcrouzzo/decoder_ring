@@ -8,38 +8,92 @@ const polybiusModule = (function () {
 
   function polybius(input, encode = true) {
     // your solution code here
-    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 
-    'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    if(encode==true){
-      return Array.from(input.toLowerCase()).map((x) =>{
-        if(x != ' '){
-        let ind = alphabet.indexOf(x)
-        if(x == 'j') {ind = 8}
-        else{ind = alphabet.indexOf(x)}
-        col = ((ind%5)+1)
-        row = Math.floor((ind/5)+1)
-        letter = `${col}${row}`
-        }else letter = ' '
-        return letter
-      }).join('')
-    }else{
-        input = input.split(' ')
-        input = input.map((str) => { 
-          if(str.length%2==0){
-          return str.split(/(?=(?:..)*$)/)
-          }else{ return 'error'}
+    const alphabet = [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+    ];
+    // if encoding message
+    if (encode == true) {
+      //convert input string into an array
+      return Array.from(input.toLowerCase())
+        .map((x) => {
+          //if character is not a space
+          if (x != " ") {
+            //get index of letter from alphabet array
+            let ind = alphabet.indexOf(x);
+            // if letter is j give it same index as i
+            if (x == "j") {
+              ind = 8;
+            //else its its regular index
+            } else {
+              ind = alphabet.indexOf(x);
+            }
+            //calculate column
+            col = (ind % 5) + 1;
+            //calculate row
+            row = Math.floor(ind / 5 + 1);
+            //return string literal with column and row
+            letter = `${col}${row}`;
+            //if its a space pass through a space
+          } else letter = " ";
+          //return new letter
+          return letter;
         })
-        if(input.includes('error')){return false}
-
-        return input.map((x) =>{
-          return x.map((y) =>{
-       let ind = (((Number(y[1])-1) *5) + Number(y[0])) -1
-       if (ind == 8) return '(i/j)'
-       //if (ind > 8) ind -=1
-       return alphabet[ind]
-        }).join('')
-      }).join(' ')
-
+        .join("");
+    } else {
+      //split input to be decoded
+      input = input.split(" ");
+      input = input.map((str) => {
+        //if number length is even
+        if (str.length % 2 == 0) {
+          //return each string split into pairs
+          return str.split(/(?=(?:..)*$)/);
+          //if its not even return error
+        } else {
+          return "error";
+        }
+      });
+      //if theres an error in the string return false
+      if (input.includes("error")) {
+        return false;
+      }
+      //else decode and return string     
+      return input
+        .map((x) => {
+          return x
+            .map((y) => {
+              //calculate correct index from column and row
+              let ind = (Number(y[1]) - 1) * 5 + Number(y[0]) - 1;
+              //if index == 8 return i and j
+              if (ind == 8) return "(i/j)";
+              return alphabet[ind];
+            })
+            .join("");
+        })
+        .join(" ");
     }
   }
 
