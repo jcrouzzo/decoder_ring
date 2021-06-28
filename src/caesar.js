@@ -14,7 +14,7 @@ const caesarModule = (function () {
                       'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
     strArr = Array.from(string.split('')).map((x) =>{
-        if(!!alphabet.includes(x)){
+        if(alphabet.includes(x)){
          let ind
          if(encode == true){
         ind = alphabet.indexOf(x) + shift

@@ -12,7 +12,8 @@ const substitutionModule = (function () {
   }
   function substitution(input, alphabet, encode = true) {
     // your solution code here
-        if(!alphabet|| _isUnique(alphabet) ||alphabet.length !=26){return false}
+    if(!alphabet|| _isUnique(alphabet) ||alphabet.length !=26){return false}
+    else{
     let string = input.toLowerCase()
     const alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
                     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -24,7 +25,7 @@ const substitutionModule = (function () {
     })
     }
     else{
-      alphabet.forEach((x) =>{
+      alpha.forEach((x) =>{
         encoder[x] = alpha[alphabet.indexOf(x)]
     })
     }
@@ -33,6 +34,7 @@ const substitutionModule = (function () {
         return encoder[x]
         } else return ' '
     }).join('')
+   }
   }
 
   return {
