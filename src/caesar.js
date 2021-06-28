@@ -13,7 +13,7 @@ const caesarModule = (function () {
       const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
                       'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-    strArr = Array.from(string.split('')).map((x) =>{
+    return Array.from(string.split('')).map((x) =>{
         if(alphabet.includes(x)){
          let ind
          if(encode == true){
@@ -23,8 +23,7 @@ const caesarModule = (function () {
         else if(ind > 25) ind = ind % 26
         return alphabet[ind]
         } else return x
-    })
-    return strArr.join('')
+    }).join('')
   }
 
   return {

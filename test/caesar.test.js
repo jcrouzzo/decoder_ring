@@ -10,6 +10,34 @@ describe('caesarShift', () =>{
     actual = caesarShift(teststring, shift)
     expect(actual).to.equal(expected)
     })
+    it('Should return a correctly cyphered string given a string and shift up to 25', () => {
+        teststring = 'The Quick Brown Fox Jumped Over The Lazy Dog'
+        expected = 'Sgd Pthbj Aqnvm Enw Itlodc Nudq Sgd Kzyx Cnf'.toLowerCase()
+        shift = 25
+        actual = caesarShift(teststring, shift)
+        expect(actual).to.equal(expected)
+        })
+    it('Should return a correctly cyphered string given a string and shift down to -25', () => {
+        teststring = 'The Quick Brown Fox Jumped Over The Lazy Dog'
+        expected = 'Uif Rvjdl Cspxo Gpy Kvnqfe Pwfs Uif Mbaz Eph'.toLowerCase()
+        shift = -25
+        actual = caesarShift(teststring, shift)
+        expect(actual).to.equal(expected)
+        })
+    it('Should return false if less than -25', () => {
+        teststring = 'The Quick Brown Fox Jumped Over The Lazy Dog'
+        expected = false
+        shift = -26
+        actual = caesarShift(teststring, shift)
+        expect(actual).to.equal(expected)
+        })
+    it('Should return false if over 25', () => {
+        teststring = 'The Quick Brown Fox Jumped Over The Lazy Dog'
+        expected = false
+        shift = 26
+        actual = caesarShift(teststring, shift)
+        expect(actual).to.equal(expected)
+        })
     it('Should return a correctly cyphered string given a string and a negative shift', () => {
         teststring = 'The Quick Brown Fox Jumped Over The Lazy Dog'
         expected = 'ocz lpdxf wmjri ajs ephkzy jqzm ocz gvut yjb'
