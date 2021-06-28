@@ -13,6 +13,7 @@ const substitutionModule = (function () {
   function substitution(input, alphabet, encode = true) {
     // your solution code here
     // if alphabet has a problem reject it
+    console.log(alphabet)
     if (!alphabet || _isUnique(alphabet) || alphabet.length != 26) {
       return false;
     } else {
@@ -52,15 +53,16 @@ const substitutionModule = (function () {
       alphabet = Array.from(alphabet);
       if (encode == true) {
         //match up standard alphabet to encoding alphabet
-        alpha.forEach((x) => {
-          encoder[x] = alphabet[alpha.indexOf(x)];
-        });
+        for(x=0; x<alphabet.length; x++){
+          encoder[alpha[x]] = alphabet[x]
+        }
       } else {
         //match up decoding alphabet to standard alphabet
-        alpha.forEach((x) => {
-          encoder[x] = alpha[alphabet.indexOf(x)];
-        });
+        for(x=0; x<alpha.length; x++){
+          encoder[alphabet[x]] = alpha[x]
+        }
       }
+      console.log(encoder)
       //return mapped array joined as string replacing the letters with encoded or decoded letters
       return Array.from(string.split(""))
         .map((x) => {
